@@ -34,6 +34,7 @@ func dirFiles(pathName string) ([]string, error) {
 	}
 	var files []string
 	for _, fileInfo := range dir {
+		//ignore hidden file
 		if strings.HasPrefix(fileInfo.Name(), ".") {
 			continue
 		}
@@ -44,7 +45,7 @@ func dirFiles(pathName string) ([]string, error) {
 			}
 			files = append(files, fs...)
 		} else {
-			//ignore hidden file
+			//check the file if is a text file
 			if !checkIsText(path.Join(pathName, fileInfo.Name())) {
 				continue
 			}
